@@ -18,8 +18,8 @@ const Theme = {
         minWidth: `min-w-[600px]`,
         marginLeft: `ml-px`,
         marginTop: `mt-px`,
-        // borderColor: `border-sky-500`,
-        // borderThickness: `border-2`,
+        borderColor: `border-sky-500`,
+        borderThickness: `border-2`,
     },
 };
 

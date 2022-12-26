@@ -18,7 +18,7 @@ export default class GameBoard {
     build() {
         this.#generatePlayers();
 
-        this.renderPlayerBoardElements();
+        this.#renderPlayerBoardElements();
 
         this.populateBoardWithSquares(this.playerBoardElements.playerBoardElement);
         this.populateBoardWithSquares(this.playerBoardElements.opponentBoardElement);
@@ -39,8 +39,7 @@ export default class GameBoard {
     }
 
     /// Render PlayerBoards ///
-
-    renderPlayerBoardElements() {
+    #renderPlayerBoardElements() {
         this.playerBoardElements = {};
         function renderBoards(divID) {
             const { gameBoardElement } = this;
