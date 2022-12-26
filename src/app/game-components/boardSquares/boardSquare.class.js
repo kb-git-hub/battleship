@@ -24,9 +24,9 @@ class BoardSquare {
     #renderHTMLAttributes() {}
 
     #renderBoardSquareStatus() {
-        this.available = true;
+        this.status = 'open'; // hit or miss
         this.occupiedByShip = null;
-        this.attacked = false;
+        this.validPlacement = true;
     }
 
     //

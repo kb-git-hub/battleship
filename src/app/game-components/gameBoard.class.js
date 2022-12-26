@@ -1,4 +1,4 @@
-import { generateQueryConstructor, generateRandomShip } from '../utils/utils.js';
+import { generateQueryConstructor } from '../utils/utils.js';
 import { BoardSquare } from './boardSquares/boardSquare.class.js';
 import { shipConfig } from './config/ship.config.js';
 import { Opponent } from './players/opponent.class.js';
@@ -12,14 +12,12 @@ export default class GameBoard {
 
     build() {
         this.#buildPlayerBoard();
-        this.#buildComputerBoard();
+        this.#buildOpponentBoard();
 
         this.#generatePlayers();
-
-        // this.receiveAttack();
     }
 
-    #buildHTMLBoardContainer() {}
+    // #buildHTMLBoardContainer() {} - also have predetermined ship squares to
 
     ///  generate player boards ///
     #buildPlayerBoard() {
@@ -37,8 +35,8 @@ export default class GameBoard {
         }
     }
 
-    #buildComputerBoard() {
-        this.boardCollection.computerBoard = { ...this.boardCollection.playerBoard };
+    #buildOpponentBoard() {
+        this.boardCollection.opponentBoard = { ...this.boardCollection.playerBoard };
     }
 
     /// Generate players ///
@@ -56,8 +54,27 @@ export default class GameBoard {
     }
 
     ///  Assign new Ships to Players ///
-
     #getShips() {
+        const shipYard = new Map();
+        shipYard.set(1, ['carrier', 5]);
+        shipYard.set(2, ['battleship', 4]);
+        shipYard.set(3, ['submarine', 3]);
+        shipYard.set(4, ['destroyer', 3]);
+        shipYard.set(5, ['patrol boat', 2]);
+
+        function generateRandomShip() {
+            const randomShipOrder = [];
+            const orderSet = new Set();
+
+            while (orderSet.size < 5) {
+                orderSet.add(Math.floor(Math.random() * 5) + 1);
+            }
+            orderSet.forEach((shipID) => {
+                randomShipOrder.push(shipYard.get(shipID));
+            });
+
+            return randomShipOrder;
+        }
         return generateRandomShip();
     }
 
@@ -72,39 +89,16 @@ export default class GameBoard {
         return shipYard;
     }
 
-    /// place ships on the boards ///
-
-    #placeShip() {
-        const { playerBoard } = this;
-        // const activeShip = this.#activateShip();
-        const activeSquare = playerBoard['0,1'];
-
-        if (!activeSquare.available) return;
-
-        activeSquare.occupiedByShip = activeShip;
-        activeSquare.available = false;
-        // testing
+    /// TEST ///
+    test() {
+        const { player } = this.players;
+        player.placeShip();
+        player.attack();
     }
 
     /// /////////// Attacks ////////
 
     receiveAttack() {
         // this should be in the square function, and gameBoard to receive attack
-        // should just update some properties in the gameboard
-        // const { playerBoard } = this;
-        // const activeSquare = playerBoard['0,1'];
-        // if (activeSquare.attacked) return;
-        // if (!activeSquare.occupiedByShip) {
-        //     activeSquare.attacked = true;
-        //     return;
-        // }
-        // if (activeSquare.occupiedByShip) {
-        //     const { occupiedByShip: shippp } = activeSquare;
-        //     activeSquare.attacked = true;
-        //     shippp.hitCount++;
-        //     shippp.hitCount++;
-        //     shippp.hitCount++;
-        // }
     }
 }
-// if ship on square, update ship hits, and log sqaure has hit
