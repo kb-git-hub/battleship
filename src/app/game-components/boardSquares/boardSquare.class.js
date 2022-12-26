@@ -1,3 +1,4 @@
+import { Theme } from '../../theme/theme.class.js';
 import { generateQueryConstructor } from '../../utils/utils.js';
 
 class BoardSquare {
@@ -17,9 +18,21 @@ class BoardSquare {
         // renderBoardSquareEvents.call(this);
     }
 
-    #renderHTMLElement() {}
+    #renderHTMLElement() {
+        const squareElement = document.createElement('div');
+        squareElement.setAttribute('position', this.position);
+        this.boardSquareElement = squareElement;
+    }
 
-    #renderHTMLStyling() {}
+    #renderHTMLStyling() {
+        const { boardSquareStyling } = Theme;
+        const { boardSquareElement } = this;
+        const keys = Object.keys(boardSquareStyling);
+
+        keys.forEach((key) => {
+            boardSquareElement.classList.add(`${boardSquareStyling[key]}`);
+        });
+    }
 
     #renderHTMLAttributes() {}
 

@@ -1,3 +1,4 @@
+import { Theme } from '../theme/theme.class.js';
 import { generateQueryConstructor } from '../utils/utils.js';
 import { BoardSquare } from './boardSquares/boardSquare.class.js';
 import { shipConfig } from './config/ship.config.js';
@@ -10,33 +11,17 @@ export default class GameBoard {
         generateQueryConstructor.call(this, ...arguments);
     }
 
+    get gameBoardElement() {
+        return document.querySelector(this.gameBoardContainerElement);
+    }
+
     build() {
-        this.#buildPlayerBoard();
-        this.#buildOpponentBoard();
-
         this.#generatePlayers();
-    }
 
-    // #buildHTMLBoardContainer() {} - also have predetermined ship squares to
+        this.renderPlayerBoardElements();
 
-    ///  generate player boards ///
-    #buildPlayerBoard() {
-        this.boardCollection.playerBoard = {};
-        const boardDims = 3;
-
-        for (let row = 0; row < boardDims; row++) {
-            for (let col = 0; col < boardDims; col++) {
-                const boardSquare = new BoardSquare({ GameBoard: this, row, col });
-
-                const position = `${row},${col}`; // remove need for getter on boardSquare
-                this.boardCollection.playerBoard[position] = boardSquare;
-                boardSquare.render();
-            }
-        }
-    }
-
-    #buildOpponentBoard() {
-        this.boardCollection.opponentBoard = { ...this.boardCollection.playerBoard };
+        this.populateBoardWithSquares(this.playerBoardElements.playerBoardElement);
+        this.populateBoardWithSquares(this.playerBoardElements.opponentBoardElement);
     }
 
     /// Generate players ///
@@ -50,6 +35,51 @@ export default class GameBoard {
             name: 'Computer',
             gameBoard: this,
             shipYard: this.#assignShipsToPlayers(),
+        });
+    }
+
+    /// Render PlayerBoards ///
+
+    renderPlayerBoardElements() {
+        this.playerBoardElements = {};
+        function renderBoards(divID) {
+            const { gameBoardElement } = this;
+            const { boardStyling } = Theme;
+            const playerBoardElement = document.createElement('div');
+            playerBoardElement.setAttribute('id', `${divID}`);
+            const keys = Object.keys(boardStyling);
+            keys.forEach((key) => {
+                playerBoardElement.classList.add(`${boardStyling[key]}`);
+            });
+            gameBoardElement.append(playerBoardElement);
+            this.playerBoardElements[`${divID}Element`] = playerBoardElement;
+        }
+        renderBoards.call(this, 'playerBoard');
+        renderBoards.call(this, 'opponentBoard');
+    }
+
+    #buildBoardSquares(divID) {
+        this.boardCollection[divID] = {};
+        const boardDims = 10;
+
+        for (let row = 0; row < boardDims; row++) {
+            for (let col = 0; col < boardDims; col++) {
+                const boardSquare = new BoardSquare({ gameBoard: this, row, col });
+
+                const position = `${row},${col}`;
+                this.boardCollection[divID][position] = boardSquare;
+                boardSquare.render();
+            }
+        }
+    }
+
+    populateBoardWithSquares(board) {
+        const boardID = board.getAttribute('id');
+        this.#buildBoardSquares(boardID);
+
+        const boardSquares = Object.keys(this.boardCollection[boardID]);
+        boardSquares.forEach((square) => {
+            board.append(this.boardCollection[boardID][square].boardSquareElement);
         });
     }
 

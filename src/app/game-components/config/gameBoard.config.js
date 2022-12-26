@@ -1,7 +1,5 @@
 const gameBoardConfig = {
-    // targetHit: [],
-    // targetMissed: [],
-
+    gameBoardContainerElement: '#gameBoardContainer',
     activeTurn: 'player',
     boardCollection: {},
     players: {},
