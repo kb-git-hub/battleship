@@ -1,4 +1,4 @@
-import { Theme } from '../theme/theme.class.js';
+import { Theme } from './config/theme.class.js';
 import { generateQueryConstructor } from '../utils/utils.js';
 import { BoardSquare } from './boardSquares/boardSquare.class.js';
 import { shipConfig } from './config/ship.config.js';
@@ -122,7 +122,7 @@ export default class GameBoard {
     test() {
         const { player } = this.players;
         player.placeShip();
-        player.attack();
+        // player.attack();
     }
 
     /// /////////// Attacks ////////

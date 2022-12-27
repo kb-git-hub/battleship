@@ -5,43 +5,39 @@ class Player {
         this.shipYard = shipYard;
         this.totalAttacks = 0;
         this.totalHits = 0;
+        this.placingShip = true;
     }
 
     placeShip() {
         const {
             gameBoard: {
-                boardCollection: { playerBoard, opponentBoard },
+                boardCollection: { playerBoard },
             },
         } = this;
 
-        const activeSquare = opponentBoard['0,1'];
-        const activeShip = this.shipYard.pop();
-        if (!activeSquare.occupiedByShip) {
-            activeSquare.occupiedByShip = activeShip;
-        }
+        return this.shipYard[this.shipYard.length - 1];
     }
 
     determineValidSquares() {}
 
     attack() {
-        const {
-            gameBoard: {
-                boardCollection: { opponentBoard },
-            },
-        } = this;
-
-        const activeSquare = opponentBoard['0,1'];
-        if (activeSquare.status === 'attacked' || activeSquare.status === 'missed') {
-            return;
-        }
-        if (!activeSquare.occupiedByShip) {
-            activeSquare.status = 'missed';
-            return;
-        }
-        if (activeSquare.occupiedByShip) {
-            const { occupiedByShip: ship } = activeSquare;
-            activeSquare.status = 'attacked';
-        }
+        //     const {
+        //         gameBoard: {
+        //             boardCollection: { opponentBoard },
+        //         },
+        //     } = this;
+        //     const activeSquare = opponentBoard['0,1'];
+        //     if (activeSquare.status === 'attacked' || activeSquare.status === 'missed') {
+        //         return;
+        //     }
+        //     if (!activeSquare.occupiedByShip) {
+        //         activeSquare.status = 'missed';
+        //         return;
+        //     }
+        //     if (activeSquare.occupiedByShip) {
+        //         const { occupiedByShip: ship } = activeSquare;
+        //         activeSquare.status = 'attacked';
+        //     }
     }
 }
 

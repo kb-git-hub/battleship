@@ -11,6 +11,12 @@ const Theme = {
         float: `float-left`,
     },
 
+    boardSquareBG: {
+        valid: `bg-lime-500`,
+        invalid: `bg-rose-600`,
+        adjacentInvalid: `bg-yellow-400`,
+    },
+
     boardStyling: {
         height: `h-[600px]`,
         width: `w-[600px]`,
