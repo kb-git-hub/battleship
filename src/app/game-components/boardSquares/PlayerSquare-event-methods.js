@@ -12,20 +12,16 @@ function SquareHoverEvents() {
     } = gameBoard;
 
     boardSquareElement.addEventListener('mouseenter', () => {
-        const shipSquares = generateShipPlacementSquareArray(gameBoard, this);
-        if (player.placingShip === 'horizontal') {
-            shipSquares.horizontalGroup.forEach((square) => {
-                square.boardSquareElement.classList.add(boardSquareBG.valid);
-            });
-        } else if (player.placingShip === 'vertical') {
-            shipSquares.verticalGroup.forEach((square) => {
-                square.boardSquareElement.classList.add(boardSquareBG.valid);
-            });
-        }
+        const shipSquares = generateShipPlacementSquares(gameBoard, this);
+        shipSquares[`${player.placingShip}Group`].forEach((square) => {
+            square.boardSquareElement.classList.add(boardSquareBG.valid);
+        });
     });
 
+    // on Mouse Leave - will reset colors ( will also need a valid placed)
     boardSquareElement.addEventListener('mouseleave', () => {
-        const shipSquares = generateShipPlacementSquareArray(gameBoard, this);
+        const shipSquares = generateShipPlacementSquares(gameBoard, this);
+        console.log(shipSquares);
         const keys = Object.keys(shipSquares);
         keys.forEach((key) => {
             shipSquares[key].forEach((square) => {
@@ -35,7 +31,8 @@ function SquareHoverEvents() {
     });
 }
 
-function generateShipPlacementSquareArray(gameBoard, activeSquare) {
+// Generates the spcific placement Squares of ship
+function generateShipPlacementSquares(gameBoard, activeSquare) {
     const {
         boardCollection: { playerBoard },
         players: { player },
@@ -56,5 +53,9 @@ function generateShipPlacementSquareArray(gameBoard, activeSquare) {
 
     return { verticalGroup, horizontalGroup };
 }
+
+function verifySurroundPlacementSquares() {}
+
+function dontAllowDrop() {}
 
 // essentially , if iterate through valid placement arrays, and if any valid placement = false then return false

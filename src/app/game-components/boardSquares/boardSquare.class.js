@@ -12,8 +12,7 @@ class BoardSquare {
 
     render() {
         this.#renderHTMLElement();
-        this.#renderHTMLStyling();
-        this.#renderHTMLAttributes();
+        this.renderHTMLStyling();
         this.#renderBoardSquareStatus();
     }
 
@@ -23,7 +22,7 @@ class BoardSquare {
         this.boardSquareElement = squareElement;
     }
 
-    #renderHTMLStyling() {
+    renderHTMLStyling() {
         const { boardSquareStyling } = Theme;
         const { boardSquareElement } = this;
         const keys = Object.keys(boardSquareStyling);
@@ -33,12 +32,10 @@ class BoardSquare {
         });
     }
 
-    #renderHTMLAttributes() {}
-
     #renderBoardSquareStatus() {
-        this.status = 'open'; // hit or miss
+        this.attackedStatus = 'open'; // hit or miss
         this.occupiedByShip = null;
-        this.validPlacement = true;
+        this.validForPlacement = true;
     }
 }
 
