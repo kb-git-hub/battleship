@@ -7,20 +7,25 @@ export default function renderPlayerSquareEvents() {
 function SquareHoverEvents() {
     const { gameBoard, boardSquareElement } = this;
     const { boardSquareBG } = Theme;
+    const {
+        players: { player },
+    } = gameBoard;
 
-    // this is going to have to be updated for vertical or horizontal at some point
     boardSquareElement.addEventListener('mouseenter', () => {
-        const shipSquares = createShipSquaresArray(gameBoard, this);
-        const keys = Object.keys(shipSquares);
-        keys.forEach((key) => {
-            shipSquares[key].forEach((square) => {
+        const shipSquares = generateShipPlacementSquareArray(gameBoard, this);
+        if (player.placingShip === 'horizontal') {
+            shipSquares.horizontalGroup.forEach((square) => {
                 square.boardSquareElement.classList.add(boardSquareBG.valid);
             });
-        });
+        } else if (player.placingShip === 'vertical') {
+            shipSquares.verticalGroup.forEach((square) => {
+                square.boardSquareElement.classList.add(boardSquareBG.valid);
+            });
+        }
     });
 
     boardSquareElement.addEventListener('mouseleave', () => {
-        const shipSquares = createShipSquaresArray(gameBoard, this);
+        const shipSquares = generateShipPlacementSquareArray(gameBoard, this);
         const keys = Object.keys(shipSquares);
         keys.forEach((key) => {
             shipSquares[key].forEach((square) => {
@@ -30,7 +35,7 @@ function SquareHoverEvents() {
     });
 }
 
-function createShipSquaresArray(gameBoard, activeSquare) {
+function generateShipPlacementSquareArray(gameBoard, activeSquare) {
     const {
         boardCollection: { playerBoard },
         players: { player },
@@ -51,3 +56,5 @@ function createShipSquaresArray(gameBoard, activeSquare) {
 
     return { verticalGroup, horizontalGroup };
 }
+
+// essentially , if iterate through valid placement arrays, and if any valid placement = false then return false

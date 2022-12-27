@@ -5,7 +5,7 @@ class Player {
         this.shipYard = shipYard;
         this.totalAttacks = 0;
         this.totalHits = 0;
-        this.placingShip = true;
+        this.placingShip = 'horizontal'; // vertical , false
     }
 
     placeShip() {

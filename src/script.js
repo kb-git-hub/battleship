@@ -6,3 +6,13 @@ const gameBoard = new GameBoard(gameBoardConfig);
 gameBoard.build();
 gameBoard.test();
 console.dir(gameBoard);
+
+window.addEventListener('keypress', (e) => {
+    const {
+        players: { player },
+    } = gameBoard;
+    if (e.key === 'r') {
+        if (player.placingShip === 'horizontal') player.placingShip = 'vertical';
+        else if (player.placingShip === 'vertical') player.placingShip = 'horizontal';
+    }
+});
