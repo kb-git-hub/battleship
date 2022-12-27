@@ -1,28 +1,31 @@
 import { Theme } from '../config/theme.class.js';
 
 export default function renderPlayerSquareEvents() {
-    generateActiveShipSquares.call(this);
+    SquareHoverEvents.call(this);
 }
 
-function generateActiveShipSquares() {
+function SquareHoverEvents() {
     const { gameBoard, boardSquareElement } = this;
     const { boardSquareBG } = Theme;
+
+    // this is going to have to be updated for vertical or horizontal at some point
     boardSquareElement.addEventListener('mouseenter', () => {
-        const { horizontalGroup, verticalGroup } = createShipSquaresArray(gameBoard, this);
-        horizontalGroup.forEach((square) => {
-            square.boardSquareElement.classList.add(boardSquareBG.valid);
-        });
-        verticalGroup.forEach((square) => {
-            square.boardSquareElement.classList.add(boardSquareBG.valid);
+        const shipSquares = createShipSquaresArray(gameBoard, this);
+        const keys = Object.keys(shipSquares);
+        keys.forEach((key) => {
+            shipSquares[key].forEach((square) => {
+                square.boardSquareElement.classList.add(boardSquareBG.valid);
+            });
         });
     });
+
     boardSquareElement.addEventListener('mouseleave', () => {
-        const { horizontalGroup, verticalGroup } = createShipSquaresArray(gameBoard, this);
-        horizontalGroup.forEach((square) => {
-            square.resetBGColor();
-        });
-        verticalGroup.forEach((square) => {
-            square.resetBGColor();
+        const shipSquares = createShipSquaresArray(gameBoard, this);
+        const keys = Object.keys(shipSquares);
+        keys.forEach((key) => {
+            shipSquares[key].forEach((square) => {
+                square.resetBGColor();
+            });
         });
     });
 }
@@ -47,10 +50,4 @@ function createShipSquaresArray(gameBoard, activeSquare) {
     }
 
     return { verticalGroup, horizontalGroup };
-
-    // const activeShip = player.placeShip();
-    // console.log(activeShip);
-    // const { length } = activeShip;
-    // console.log(typeof activeShip);
-    // console.log(length);
 }
