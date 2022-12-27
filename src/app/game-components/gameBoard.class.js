@@ -1,6 +1,7 @@
 import { Theme } from './config/theme.class.js';
 import { generateQueryConstructor } from '../utils/utils.js';
-import { BoardSquare } from './boardSquares/boardSquare.class.js';
+import { PlayerSquare } from './boardSquares/playerSquare.class.js';
+import { OpponentSquare } from './boardSquares/OpponentSquare.class.js';
 import { shipConfig } from './config/ship.config.js';
 import { Opponent } from './players/opponent.class.js';
 import { Player } from './players/player.class.js';
@@ -60,11 +61,15 @@ export default class GameBoard {
     #buildBoardSquares(divID) {
         this.boardCollection[divID] = {};
         const boardDims = 10;
+        let boardSquare;
 
         for (let row = 0; row < boardDims; row++) {
             for (let col = 0; col < boardDims; col++) {
-                const boardSquare = new BoardSquare({ gameBoard: this, row, col });
-
+                if (divID === 'playerBoard') {
+                    boardSquare = new PlayerSquare({ gameBoard: this, row, col });
+                } else if (divID === 'opponentBoard') {
+                    boardSquare = new OpponentSquare({ gameBoard: this, row, col });
+                }
                 const position = `${row},${col}`;
                 this.boardCollection[divID][position] = boardSquare;
                 boardSquare.render();

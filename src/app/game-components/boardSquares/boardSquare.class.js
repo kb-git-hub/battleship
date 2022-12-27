@@ -1,6 +1,5 @@
 import { Theme } from '../config/theme.class.js';
 import { generateQueryConstructor } from '../../utils/utils.js';
-import renderBoardSquareEvents from './boardSquare-event-methods.js';
 
 class BoardSquare {
     constructor() {
@@ -16,7 +15,6 @@ class BoardSquare {
         this.#renderHTMLStyling();
         this.#renderHTMLAttributes();
         this.#renderBoardSquareStatus();
-        renderBoardSquareEvents.call(this);
     }
 
     #renderHTMLElement() {
@@ -41,15 +39,6 @@ class BoardSquare {
         this.status = 'open'; // hit or miss
         this.occupiedByShip = null;
         this.validPlacement = true;
-    }
-
-    resetBGColor() {
-        const { boardSquareElement } = this;
-        const bgRegex = /^bg/;
-
-        boardSquareElement.classList.forEach((className) => {
-            if (bgRegex.test(className)) boardSquareElement.classList.remove(className);
-        });
     }
 }
 

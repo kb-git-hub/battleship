@@ -1,6 +1,6 @@
 import { Theme } from '../config/theme.class.js';
 
-export default function renderBoardSquareEvents() {
+export default function renderPlayerSquareEvents() {
     generateActiveShipSquares.call(this);
 }
 
