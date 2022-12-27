@@ -8,14 +8,22 @@ function generateActiveShipSquares() {
     const { gameBoard, boardSquareElement } = this;
     const { boardSquareBG } = Theme;
     boardSquareElement.addEventListener('mouseenter', () => {
-        // boardSquareElement.classList.add(boardSquareBG.valid);
         const { horizontalGroup, verticalGroup } = createShipSquaresArray(gameBoard, this);
         horizontalGroup.forEach((square) => {
             square.boardSquareElement.classList.add(boardSquareBG.valid);
         });
+        verticalGroup.forEach((square) => {
+            square.boardSquareElement.classList.add(boardSquareBG.valid);
+        });
     });
     boardSquareElement.addEventListener('mouseleave', () => {
-        this.resetBGColor();
+        const { horizontalGroup, verticalGroup } = createShipSquaresArray(gameBoard, this);
+        horizontalGroup.forEach((square) => {
+            square.resetBGColor();
+        });
+        verticalGroup.forEach((square) => {
+            square.resetBGColor();
+        });
     });
 }
 
@@ -34,8 +42,8 @@ function createShipSquaresArray(gameBoard, activeSquare) {
     const { length } = activeShip;
 
     for (let i = 1; i < length; i++) {
-        verticalGroup.push(playerBoard[`${row - i},${col}`]);
-        horizontalGroup.push(playerBoard[`${row},${col + 1}`]);
+        if (row - i >= 0) verticalGroup.push(playerBoard[`${row - i},${col}`]);
+        if (col + i <= 9) horizontalGroup.push(playerBoard[`${row},${col + i}`]);
     }
 
     return { verticalGroup, horizontalGroup };
