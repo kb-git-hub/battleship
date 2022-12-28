@@ -1,8 +1,4 @@
 const Theme = {
-    colors: {
-        neutralSquare: 'sky-500',
-    },
-
     boardSquareStyling: {
         width: `w-[59.5px]`,
         height: `h-[59.5px]`,
@@ -27,17 +23,9 @@ const Theme = {
         minWidth: `min-w-[600px]`,
         marginLeft: `ml-px`,
         marginTop: `mt-px`,
-        borderColor: `border-sky-500`,
+        borderColor: `border-zinc-800`,
         borderThickness: `border-2`,
     },
 };
 
 export { Theme };
-
-/*
-   valid: `bg-lime-500`,
-        invalid: `bg-rose-400`,
-        adjacent: `bg-zinc-500`,
-        attackMiss: `bg-sky-500`,
-        attackHit: `bg-rose-600`,
-*/
