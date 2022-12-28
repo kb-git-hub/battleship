@@ -19,7 +19,7 @@ function squareHoverEvents() {
         const adjacentSquares = generateAdjacentShipSquares(shipSquares[`${player.placingShip}Group`], gameBoard);
         const isValid = isPlacementValid(shipSquares[`${player.placingShip}Group`], adjacentSquares, shipLength);
         adjacentSquares.forEach((square) => {
-            square.boardSquareElement.classList.add(boardSquareBG.adjacentInvalid);
+            square.boardSquareElement.classList.add(boardSquareBG.adjacent);
         });
 
         shipSquares[`${player.placingShip}Group`].forEach((square) => {
@@ -33,6 +33,7 @@ function squareHoverEvents() {
     });
 }
 
+// adjacent sqaures validForPlacement = false , shipsquares, validForPlacement = false, and occupied ship, shipY
 function squarePlacementClickEvents() {
     const { gameBoard, boardSquareElement } = this;
     const { boardSquareBG } = Theme;
@@ -43,8 +44,7 @@ function squarePlacementClickEvents() {
     boardSquareElement.addEventListener('click', () => {
         this.validForPlacement = false;
         console.log(this.boardSquareElement);
-        this.boardSquareElement.classList.add(boardSquareBG.testColor);
-
+        this.boardSquareElement.classList.add(boardSquareBG.attackMiss);
         console.log(this);
     });
 }

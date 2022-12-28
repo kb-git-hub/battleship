@@ -13,9 +13,10 @@ const Theme = {
 
     boardSquareBG: {
         valid: `bg-lime-500`,
-        invalid: `bg-rose-600`,
-        adjacentInvalid: `bg-yellow-400`,
-        testColor: `bg-sky-500`,
+        invalid: `bg-rose-400`,
+        adjacent: `bg-zinc-500`,
+        attackMiss: `bg-sky-500`,
+        attackHit: `bg-rose-600`,
     },
 
     boardStyling: {
@@ -31,3 +32,11 @@ const Theme = {
 };
 
 export { Theme };
+
+/*
+   valid: `bg-lime-500`,
+        invalid: `bg-rose-400`,
+        adjacent: `bg-zinc-500`,
+        attackMiss: `bg-sky-500`,
+        attackHit: `bg-rose-600`,
+*/
