@@ -18,13 +18,16 @@ function squareHoverEvents() {
         const shipSquares = generateShipSquares(gameBoard, this);
         const adjacentSquares = generateAdjacentShipSquares(shipSquares[`${player.placingShip}Group`], gameBoard);
         const isValid = isPlacementValid(shipSquares[`${player.placingShip}Group`], adjacentSquares, shipLength);
+
         adjacentSquares.forEach((square) => {
-            square.boardSquareElement.classList.add(boardSquareBG.adjacent);
+            if (!square.occupiedByShip) square.boardSquareElement.classList.add(boardSquareBG.adjacent);
         });
 
         shipSquares[`${player.placingShip}Group`].forEach((square) => {
-            if (isValid) square.boardSquareElement.classList.add(boardSquareBG.valid);
-            else square.boardSquareElement.classList.add(boardSquareBG.invalid);
+            if (!square.occupiedByShip) {
+                if (isValid) square.boardSquareElement.classList.add(boardSquareBG.valid);
+                else square.boardSquareElement.classList.add(boardSquareBG.invalid);
+            }
         });
     });
 
@@ -41,10 +44,25 @@ function squarePlacementClickEvents() {
         players: { player },
     } = gameBoard;
 
+    const shipLength = player.placeShip().length;
     boardSquareElement.addEventListener('click', () => {
-        this.validForPlacement = false;
-        console.log(this.boardSquareElement);
-        this.boardSquareElement.classList.add(boardSquareBG.attackMiss);
+        const shipSquares = generateShipSquares(gameBoard, this);
+        const adjacentSquares = generateAdjacentShipSquares(shipSquares[`${player.placingShip}Group`], gameBoard);
+        const isValid = isPlacementValid(shipSquares[`${player.placingShip}Group`], adjacentSquares, shipLength);
+
+        if (!isValid) return;
+
+        // adjacentSquares.forEach((square) => {
+        //     square.validForPlacement = false;
+        // });
+
+        shipSquares[`${player.placingShip}Group`].forEach((square) => {
+            square.validForPlacement = false;
+            square.occupiedByShip = player.placeShip();
+            square.resetBGColor();
+            square.boardSquareElement.classList.add(boardSquareBG.ship);
+        });
+
         console.log(this);
     });
 }

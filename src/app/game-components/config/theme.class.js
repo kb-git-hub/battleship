@@ -12,6 +12,7 @@ const Theme = {
     },
 
     boardSquareBG: {
+        ship: `bg-zinc-400`,
         valid: `bg-lime-500`,
         invalid: `bg-rose-400`,
         adjacent: `bg-zinc-500`,
