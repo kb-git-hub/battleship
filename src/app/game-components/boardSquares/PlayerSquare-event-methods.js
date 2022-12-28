@@ -49,28 +49,6 @@ function squarePlacementClickEvents() {
     });
 }
 
-// boardSquareElement.addEventListener('mouseleave', () => {
-//     const shipSquares = generateShipPlacementSquares(gameBoard, this);
-//     const keys = Object.keys(shipSquares);
-//     keys.forEach((key) => {
-//         shipSquares[key].forEach((square) => {
-//             square.resetBGColor();
-//         });
-//     });
-
-//     const shipLength = player.placeShip().length;
-
-//     const adjacentSquares = verifyAdjacentPlacementSquares(
-//         shipSquares[`${player.placingShip}Group`],
-//         shipLength,
-//         gameBoard
-//     );
-
-//     adjacentSquares.forEach((square) => {
-//         square.resetBGColor();
-//     });
-// });
-
 // Generates the spcific placement Squares of ship
 function generateShipSquares(gameBoard, activeSquare) {
     const {
