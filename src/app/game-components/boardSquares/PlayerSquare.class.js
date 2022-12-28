@@ -21,6 +21,22 @@ class PlayerSquare extends BoardSquare {
             if (bgRegex.test(className)) boardSquareElement.classList.remove(className);
         });
     }
+
+    resetAllBGColors() {
+        const {
+            gameBoard: {
+                boardCollection: { playerBoard },
+            },
+        } = this;
+
+        const bgRegex = /^bg/;
+        const boardSquares = Object.values(playerBoard);
+        boardSquares.forEach((square) => {
+            square.boardSquareElement.classList.forEach((className) => {
+                if (bgRegex.test(className)) square.boardSquareElement.classList.remove(className);
+            });
+        });
+    }
 }
 
 export { PlayerSquare };
