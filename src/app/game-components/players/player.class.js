@@ -23,28 +23,9 @@ class Player {
     removeShipFromYard() {
         this.shipYard.pop();
         this.shipCount = this.shipYard.length;
-        console.log(this.shipCount);
     }
 
-    attack() {
-        //     const {
-        //         gameBoard: {
-        //             boardCollection: { opponentBoard },
-        //         },
-        //     } = this;
-        //     const activeSquare = opponentBoard['0,1'];
-        //     if (activeSquare.status === 'attacked' || activeSquare.status === 'missed') {
-        //         return;
-        //     }
-        //     if (!activeSquare.occupiedByShip) {
-        //         activeSquare.status = 'missed';
-        //         return;
-        //     }
-        //     if (activeSquare.occupiedByShip) {
-        //         const { occupiedByShip: ship } = activeSquare;
-        //         activeSquare.status = 'attacked';
-        //     }
-    }
+    attack() {}
 }
 
 export { Player };

@@ -63,7 +63,6 @@ function squarePlacementClickEvents() {
         });
 
         player.removeShipFromYard();
-        console.log(this);
     });
 }
 
