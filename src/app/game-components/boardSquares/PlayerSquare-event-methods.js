@@ -13,6 +13,7 @@ function squareHoverEvents() {
     } = gameBoard;
 
     boardSquareElement.addEventListener('mouseenter', () => {
+        if (player.shipCount === 0) return;
         const shipLength = player.placeShip().length;
 
         const shipSquares = generateShipSquares(gameBoard, this);
@@ -44,17 +45,15 @@ function squarePlacementClickEvents() {
         players: { player },
     } = gameBoard;
 
-    const shipLength = player.placeShip().length;
     boardSquareElement.addEventListener('click', () => {
+        const shipLength = player.placeShip().length;
         const shipSquares = generateShipSquares(gameBoard, this);
         const adjacentSquares = generateAdjacentShipSquares(shipSquares[`${player.placingShip}Group`], gameBoard);
         const isValid = isPlacementValid(shipSquares[`${player.placingShip}Group`], adjacentSquares, shipLength);
 
-        if (!isValid) return;
-
-        // adjacentSquares.forEach((square) => {
-        //     square.validForPlacement = false;
-        // });
+        if (!isValid) {
+            return;
+        }
 
         shipSquares[`${player.placingShip}Group`].forEach((square) => {
             square.validForPlacement = false;
@@ -63,6 +62,7 @@ function squarePlacementClickEvents() {
             square.boardSquareElement.classList.add(boardSquareBG.ship);
         });
 
+        player.removeShipFromYard();
         console.log(this);
     });
 }

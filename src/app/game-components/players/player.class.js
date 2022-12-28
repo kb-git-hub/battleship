@@ -5,7 +5,8 @@ class Player {
         this.shipYard = shipYard;
         this.totalAttacks = 0;
         this.totalHits = 0;
-        this.placingShip = 'horizontal'; // vertical , false
+        this.placingShip = 'horizontal';
+        this.shipCount = this.shipYard.length;
     }
 
     placeShip() {
@@ -15,10 +16,15 @@ class Player {
             },
         } = this;
 
+        // return this.shipYard[this.shipYard.length - 1];
         return this.shipYard[this.shipYard.length - 1];
     }
 
-    determineValidSquares() {}
+    removeShipFromYard() {
+        this.shipYard.pop();
+        this.shipCount = this.shipYard.length;
+        console.log(this.shipCount);
+    }
 
     attack() {
         //     const {
