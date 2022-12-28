@@ -15,6 +15,7 @@ const Theme = {
         valid: `bg-lime-500`,
         invalid: `bg-rose-600`,
         adjacentInvalid: `bg-yellow-400`,
+        testColor: `bg-sky-500`,
     },
 
     boardStyling: {

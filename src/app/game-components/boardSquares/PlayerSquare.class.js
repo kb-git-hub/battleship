@@ -33,7 +33,9 @@ class PlayerSquare extends BoardSquare {
         const boardSquares = Object.values(playerBoard);
         boardSquares.forEach((square) => {
             square.boardSquareElement.classList.forEach((className) => {
-                if (bgRegex.test(className)) square.boardSquareElement.classList.remove(className);
+                if (square.validForPlacement) {
+                    if (bgRegex.test(className)) square.boardSquareElement.classList.remove(className);
+                }
             });
         });
     }
