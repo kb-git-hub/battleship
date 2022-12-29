@@ -561,8 +561,20 @@ video {
   height: 600px;
 }
 
+.h-\[400px\] {
+  height: 400px;
+}
+
+.h-\[39\.5px\] {
+  height: 39.5px;
+}
+
 .min-h-\[600px\] {
   min-height: 600px;
+}
+
+.min-h-\[400px\] {
+  min-height: 400px;
 }
 
 .w-full {
@@ -577,8 +589,20 @@ video {
   width: 600px;
 }
 
+.w-\[400px\] {
+  width: 400px;
+}
+
+.w-\[39\.5px\] {
+  width: 39.5px;
+}
+
 .min-w-\[600px\] {
   min-width: 600px;
+}
+
+.min-w-\[400px\] {
+  min-width: 400px;
 }
 
 .items-center {

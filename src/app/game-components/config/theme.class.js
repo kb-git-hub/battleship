@@ -1,7 +1,7 @@
 const Theme = {
     boardSquareStyling: {
-        width: `w-[59.5px]`,
-        height: `h-[59.5px]`,
+        width: `w-[39.5px]`,
+        height: `h-[39.5px]`,
         borderColor: `border-zinc-600`,
         borderThickness: `border-2`,
         float: `float-left`,
@@ -18,10 +18,10 @@ const Theme = {
     },
 
     boardStyling: {
-        height: `h-[600px]`,
-        width: `w-[600px]`,
-        minHeight: `min-h-[600px]`,
-        minWidth: `min-w-[600px]`,
+        height: `h-[400px]`,
+        width: `w-[400px]`,
+        minHeight: `min-h-[400px]`,
+        minWidth: `min-w-[400px]`,
         marginLeft: `ml-px`,
         marginTop: `mt-px`,
         borderColor: `border-zinc-800`,
