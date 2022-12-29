@@ -70,6 +70,7 @@ export default class GameBoard {
                     boardSquare = new PlayerSquare({ gameBoard: this, row, col });
                 } else if (divID === 'opponentBoard') {
                     boardSquare = new OpponentSquare({ gameBoard: this, row, col });
+                    OpponentSquare.prototype.resetBGColor = PlayerSquare.prototype.resetBGColor; // using proto inheritance here, directly from module
                 }
                 const position = `${row},${col}`;
                 this.boardCollection[divID][position] = boardSquare;
@@ -129,10 +130,5 @@ export default class GameBoard {
             players: { opponent },
         } = this;
         opponent.generateRandomBoard();
-    }
-    /// /////////// Attacks ////////
-
-    receiveAttack() {
-        // this should be in the square function, and gameBoard to receive attack
     }
 }

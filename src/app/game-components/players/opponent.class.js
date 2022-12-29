@@ -67,7 +67,10 @@ class Opponent extends Player {
             if (length === shipGroup.length) {
                 const adjacentSquares = this.#generateAdjacentShipSquares(shipGroup, gameBoard);
                 const isValid = this.#isPlacementValid(shipGroup, adjacentSquares);
-                if (isValid) return shipGroup;
+                if (isValid) {
+                    shipGroup.forEach((shipSquare) => (shipSquare.occupiedByShip = ship));
+                    return shipGroup;
+                }
             }
         }
     }

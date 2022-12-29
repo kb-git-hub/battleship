@@ -1,11 +1,15 @@
 import { Theme } from '../game-components/config/theme.class.js';
 import gameLoopEventListeners from './gameloop-eventlisteners.js';
+import { gameBoardConfig } from '../game-components/config/gameBoard.config.js';
+import GameBoard from '../game-components/gameboard.class.js';
 
 class GameLoop {
     constructor(gameBoard) {
         this.gameBoard = gameBoard;
         this.playerShipsRemaining = 5;
-        this.readyToFight = false;
+        this.readyToFight = true;
+        this.playerScore = 0;
+        this.opponentScore = 0;
     }
 
     gameInit() {
@@ -66,6 +70,32 @@ class GameLoop {
     checkReadyToFight() {
         if (this.playerShipsRemaining === 0) this.readyToFight = true;
     }
+
+    checkForWinner() {
+        const {
+            gameBoard: {
+                players: { player, opponent },
+            },
+        } = this;
+
+        if (player.totalHits === 17) {
+            this.informationDiv.innerText = 'YOU WIN!';
+        }
+
+        console.log(player.totalHits);
+        console.log(opponent.totalHits);
+    }
+
+    updateWinnerText() {}
 }
 
-export { GameLoop };
+function newGame() {
+    const gameBoard = new GameBoard(gameBoardConfig);
+    gameBoard.build();
+    console.dir(gameBoard);
+
+    const gameLoop = new GameLoop(gameBoard);
+    gameLoop.gameInit();
+}
+
+export { GameLoop, newGame };

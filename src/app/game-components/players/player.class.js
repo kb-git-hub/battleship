@@ -1,3 +1,5 @@
+import { Theme } from '../config/theme.class.js';
+
 class Player {
     constructor({ name, gameBoard, shipYard }) {
         this.name = name;
@@ -23,10 +25,6 @@ class Player {
     removeShipFromYard() {
         this.shipYard.pop();
         this.shipCount = this.shipYard.length;
-    }
-
-    attack() {
-        console.log(this);
     }
 }
 
