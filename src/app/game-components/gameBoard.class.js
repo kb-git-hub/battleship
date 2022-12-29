@@ -18,11 +18,12 @@ export default class GameBoard {
 
     build() {
         this.#generatePlayers();
-
         this.#renderPlayerBoardElements();
 
         this.populateBoardWithSquares(this.playerBoardElements.playerBoardElement);
         this.populateBoardWithSquares(this.playerBoardElements.opponentBoardElement);
+
+        this.#generateOpponentBoard();
     }
 
     /// Generate players ///
@@ -123,13 +124,12 @@ export default class GameBoard {
         return shipYard;
     }
 
-    /// TEST ///
-    test() {
-        const { player } = this.players;
-        player.placeShip();
-        // player.attack();
+    #generateOpponentBoard() {
+        const {
+            players: { opponent },
+        } = this;
+        opponent.generateRandomBoard();
     }
-
     /// /////////// Attacks ////////
 
     receiveAttack() {

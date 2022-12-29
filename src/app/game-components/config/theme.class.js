@@ -14,6 +14,7 @@ const Theme = {
         adjacent: `bg-zinc-500`,
         attackMiss: `bg-sky-500`,
         attackHit: `bg-rose-600`,
+        enemy: `bg-violet-400`,
     },
 
     boardStyling: {
