@@ -38,7 +38,6 @@ class Opponent extends Player {
         return opponentBoard[`${[row, col].join()}`];
     }
 
-    // will need to add placements in there
     #generateShipSquareArray() {
         const {
             gameBoard,

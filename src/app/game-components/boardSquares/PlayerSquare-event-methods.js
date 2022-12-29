@@ -132,5 +132,3 @@ function isPlacementValid(shipSquares, shipAdjacentSquares, shipLength) {
     // check each square for valid placement
     return true;
 }
-
-// essentially , if iterate through valid placement arrays, and if any valid placement = false then return false
