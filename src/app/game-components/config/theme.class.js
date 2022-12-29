@@ -7,6 +7,11 @@ const Theme = {
         float: `float-left`,
     },
 
+    boardSquareCursor: {
+        player: `cursor-pointer`,
+        enemy: `cursor-cell`,
+    },
+
     boardSquareBG: {
         ship: `bg-zinc-400`,
         valid: `bg-lime-500`,
@@ -29,13 +34,19 @@ const Theme = {
     },
 
     infoDiv: {
-        height: `h-[100px]`,
-        width: `w-[200px]`,
-        minHeight: `min-h-[100px]`,
-        minWidth: `min-w-[100px]`,
+        height: `h-[200px]`,
+        width: `w-[300px]`,
+        minHeight: `min-h-[200px]`,
+        minWidth: `min-w-[300px]`,
         borderColor: `border-zinc-600`,
         borderThickness: `border-2`,
         marginTop: `mt-[100px]`,
+        text: `text-white`,
+        flex: `flex`,
+        flexCol: `flex-col`,
+        justify: `justify-center`,
+        align: `items-center`,
+        gap: `gap-2`,
     },
 };
 

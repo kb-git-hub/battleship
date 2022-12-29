@@ -1,14 +1,18 @@
 import { Theme } from '../game-components/config/theme.class.js';
+import gameLoopEventListeners from './gameloop-eventlisteners.js';
 
 class GameLoop {
     constructor(gameBoard) {
         this.gameBoard = gameBoard;
+        this.playerShipsRemaining = 5;
+        this.readyToFight = false;
     }
 
     gameInit() {
         this.addPlayerRotateShipListener(this.gameBoard);
         this.createGameInfoDiv();
         this.updateGameInfoDivText();
+        gameLoopEventListeners.call(this);
     }
 
     addPlayerRotateShipListener() {
@@ -43,15 +47,26 @@ class GameLoop {
     }
 
     updateGameInfoDivText() {
-        const {
-            gameBoard: {
-                players: {
-                    player: { shipCount },
-                },
-            },
-        } = this;
+        this.informationDiv.innerText = '';
 
-        this.informationDiv.innerText = shipCount;
+        if (this.playerShipsRemaining > 0) {
+            const directions = document.createElement('div');
+            const rotateText = document.createElement('div');
+            const shipsRemaining = document.createElement('div');
+
+            directions.innerText = 'Place ships on the left board';
+            rotateText.innerText = `Press 'R' to rotate ship`;
+            shipsRemaining.innerText = `Ships remaining: ${this.playerShipsRemaining}`;
+            this.informationDiv.append(directions, rotateText, shipsRemaining);
+        } else {
+            this.informationDiv.innerText = `Click opponent's board to attack!`;
+        }
+    }
+
+    checkReadyToFight() {
+        if (this.playerShipsRemaining === 0) this.readyToFight = true;
+        console.log(this.playerShipsRemaining, this.readyToFight);
     }
 }
+
 export { GameLoop };

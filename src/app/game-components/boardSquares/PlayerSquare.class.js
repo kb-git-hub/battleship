@@ -1,4 +1,5 @@
 import { generateQueryConstructor } from '../../utils/utils.js';
+import { Theme } from '../config/theme.class.js';
 import { BoardSquare } from './BoardSquare.class.js';
 import renderPlayerSquareEvents from './playerSquare-event-methods.js';
 
@@ -10,7 +11,14 @@ class PlayerSquare extends BoardSquare {
 
     render() {
         super.render();
+        this.renderCursor();
         renderPlayerSquareEvents.call(this);
+    }
+
+    renderCursor() {
+        const { boardSquareElement } = this;
+        const { boardSquareCursor } = Theme;
+        boardSquareElement.classList.add(boardSquareCursor.player);
     }
 
     resetBGColor() {

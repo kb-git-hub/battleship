@@ -46,6 +46,7 @@ function squarePlacementClickEvents() {
     } = gameBoard;
 
     boardSquareElement.addEventListener('click', () => {
+        if (!player.placeShip()) return;
         const shipLength = player.placeShip().length;
         const shipSquares = generateShipSquares(gameBoard, this);
         const adjacentSquares = generateAdjacentShipSquares(shipSquares[`${player.placingShip}Group`], gameBoard);
