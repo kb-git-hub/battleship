@@ -9,3 +9,5 @@ console.dir(gameBoard);
 
 const gameLoop = new GameLoop(gameBoard);
 gameLoop.gameInit();
+
+// put the whole thing in a global function for restart

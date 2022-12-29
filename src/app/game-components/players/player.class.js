@@ -25,7 +25,9 @@ class Player {
         this.shipCount = this.shipYard.length;
     }
 
-    attack() {}
+    attack() {
+        console.log(this);
+    }
 }
 
 export { Player };

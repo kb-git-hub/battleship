@@ -21,4 +21,17 @@ function playerSquareListeners() {
 
 function OpponentSquareListeners() {
     const { gameBoard } = this;
+    const {
+        players: { player },
+        boardCollection: { opponentBoard },
+    } = gameBoard;
+
+    const keys = Object.keys(opponentBoard);
+    keys.forEach((key) => {
+        opponentBoard[key].boardSquareElement.addEventListener('click', () => {
+            if (this.readyToFight) {
+                player.attack();
+            }
+        });
+    });
 }

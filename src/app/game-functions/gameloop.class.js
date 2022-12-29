@@ -65,7 +65,6 @@ class GameLoop {
 
     checkReadyToFight() {
         if (this.playerShipsRemaining === 0) this.readyToFight = true;
-        console.log(this.playerShipsRemaining, this.readyToFight);
     }
 }
 

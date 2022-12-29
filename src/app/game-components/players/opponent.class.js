@@ -111,6 +111,8 @@ class Opponent extends Player {
         }
         return true;
     }
+
+    attack() {}
 }
 
 export { Opponent };
