@@ -23,7 +23,7 @@ export default class GameBoard {
         this.populateBoardWithSquares(this.playerBoardElements.playerBoardElement);
         this.populateBoardWithSquares(this.playerBoardElements.opponentBoardElement);
 
-        this.#generateOpponentBoard();
+        this.#placeOpponentShips();
     }
 
     /// Generate players ///
@@ -124,7 +124,7 @@ export default class GameBoard {
         return shipYard;
     }
 
-    #generateOpponentBoard() {
+    #placeOpponentShips() {
         const {
             players: { opponent },
         } = this;
