@@ -78,15 +78,39 @@ class GameLoop {
             },
         } = this;
 
-        if (player.totalHits === 17) {
-            this.informationDiv.innerText = 'YOU WIN!';
-        }
-
-        console.log(player.totalHits);
-        console.log(opponent.totalHits);
+        if (player.totalHits === 1) this.updateWinnerText('Player');
+        else if (opponent.totalHits === 17) this.updateWinnerText('Opponent');
     }
 
-    updateWinnerText() {}
+    updateWinnerText(winner) {
+        this.freezeBoards();
+        const { playAgainButton } = Theme;
+        this.informationDiv.innerText = '';
+        const winnerText = document.createElement('div');
+        const playAgain = document.createElement('div');
+
+        playAgain.innerText = `Play again?`;
+
+        const keys = Object.keys(playAgainButton);
+        keys.forEach((key) => {
+            playAgain.classList.add(`${playAgainButton[key]}`);
+        });
+
+        if (winner === 'Player') winnerText.innerText = `YOU WIN!`;
+        else if (winner === 'Opponent') winnerText.innerText = `YOU LOSE!`;
+        this.informationDiv.append(winnerText, playAgain);
+    }
+
+    freezeBoards() {
+        const {
+            gameBoard: { playerBoardElements },
+        } = this;
+
+        const keys = Object.keys(playerBoardElements);
+        keys.forEach((key) => {
+            playerBoardElements[key].classList.add('pointer-events-none');
+        });
+    }
 }
 
 function newGame() {

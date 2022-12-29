@@ -48,6 +48,13 @@ const Theme = {
         align: `items-center`,
         gap: `gap-2`,
     },
+
+    playAgainButton: {
+        borderColor: `border-zinc-600`,
+        borderThickness: `border-2`,
+        padding: `p-2`,
+        BG: `bg-zinc-400`,
+    },
 };
 
 export { Theme };
