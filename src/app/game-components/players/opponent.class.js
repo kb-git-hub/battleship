@@ -11,12 +11,18 @@ class Opponent extends Player {
 
     generateRandomBoard() {
         const { boardSquareBG } = Theme;
-        const ships = this.#generateShipSquareArray();
-        console.log(ships);
 
-        ships.shipGroup.forEach((ship) => {
-            ship.boardSquareElement.classList.add(boardSquareBG.enemy);
-        });
+        while (this.shipCount > 0) {
+            const ships = this.#generateShipSquareArray();
+            console.log(ships);
+
+            ships.forEach((ship) => {
+                ship.boardSquareElement.classList.add(boardSquareBG.enemy);
+                ship.validForPlacement = false;
+            });
+
+            this.shipCount = this.shipYard.length;
+        }
     }
 
     #returnRandomVertHoriz() {
@@ -37,6 +43,7 @@ class Opponent extends Player {
     // will need to add placements in there
     #generateShipSquareArray() {
         const {
+            gameBoard,
             gameBoard: {
                 boardCollection: { opponentBoard },
             },
@@ -60,8 +67,52 @@ class Opponent extends Player {
                 }
             }
 
-            if (length === shipGroup.length) return { shipGroup, ship, direction };
+            if (length === shipGroup.length) {
+                const adjacentSquares = this.#generateAdjacentShipSquares(shipGroup, gameBoard);
+                const isValid = this.#isPlacementValid(shipGroup, adjacentSquares);
+                if (isValid) return shipGroup;
+            }
         }
+    }
+
+    #generateAdjacentShipSquares(shipSquares, gameBoard) {
+        const {
+            boardCollection: { opponentBoard },
+            players: { player },
+        } = gameBoard;
+        const { boardSquareBG } = Theme;
+
+        const adjacentSquaresArray = new Set();
+
+        shipSquares.forEach((ship) => {
+            const { row, col } = ship;
+            adjacentSquaresArray.add(opponentBoard[`${row},${col}`]);
+            adjacentSquaresArray.add(opponentBoard[`${row - 1},${col - 1}`]);
+            adjacentSquaresArray.add(opponentBoard[`${row - 1},${col}`]);
+            adjacentSquaresArray.add(opponentBoard[`${row - 1},${col + 1}`]);
+            adjacentSquaresArray.add(opponentBoard[`${row},${col - 1}`]);
+            adjacentSquaresArray.add(opponentBoard[`${row},${col + 1}`]);
+            adjacentSquaresArray.add(opponentBoard[`${row + 1},${col - 1}`]);
+            adjacentSquaresArray.add(opponentBoard[`${row + 1},${col}`]);
+            adjacentSquaresArray.add(opponentBoard[`${row + 1},${col + 1}`]);
+            adjacentSquaresArray.delete(undefined);
+        });
+
+        const array = [...adjacentSquaresArray];
+        const filteredArray = array.filter((square) => !shipSquares.includes(square)); // remove ship squares, and return only adjacent squares
+
+        return filteredArray;
+    }
+
+    #isPlacementValid(shipSquares, shipAdjacentSquares) {
+        for (const ship of shipSquares) {
+            if (!ship.validForPlacement) return false;
+        }
+
+        for (const ship of shipAdjacentSquares) {
+            if (!ship.validForPlacement) return false;
+        }
+        return true;
     }
 }
 
