@@ -27,6 +27,16 @@ const Theme = {
         borderColor: `border-zinc-800`,
         borderThickness: `border-2`,
     },
+
+    infoDiv: {
+        height: `h-[100px]`,
+        width: `w-[200px]`,
+        minHeight: `min-h-[100px]`,
+        minWidth: `min-w-[100px]`,
+        borderColor: `border-zinc-600`,
+        borderThickness: `border-2`,
+        marginTop: `mt-[100px]`,
+    },
 };
 
 export { Theme };
