@@ -54,6 +54,7 @@ const Theme = {
         borderThickness: `border-2`,
         padding: `p-2`,
         BG: `bg-zinc-400`,
+        cursor: `cursor-pointer`,
     },
 };
 

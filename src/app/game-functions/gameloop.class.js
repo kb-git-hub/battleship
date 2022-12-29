@@ -7,7 +7,7 @@ class GameLoop {
     constructor(gameBoard) {
         this.gameBoard = gameBoard;
         this.playerShipsRemaining = 5;
-        this.readyToFight = true;
+        this.readyToFight = false;
         this.playerScore = 0;
         this.opponentScore = 0;
     }
@@ -78,7 +78,7 @@ class GameLoop {
             },
         } = this;
 
-        if (player.totalHits === 1) this.updateWinnerText('Player');
+        if (player.totalHits === 17) this.updateWinnerText('Player');
         else if (opponent.totalHits === 17) this.updateWinnerText('Opponent');
     }
 
@@ -99,6 +99,8 @@ class GameLoop {
         if (winner === 'Player') winnerText.innerText = `YOU WIN!`;
         else if (winner === 'Opponent') winnerText.innerText = `YOU LOSE!`;
         this.informationDiv.append(winnerText, playAgain);
+
+        playAgain.onclick = newGame;
     }
 
     freezeBoards() {
@@ -114,6 +116,9 @@ class GameLoop {
 }
 
 function newGame() {
+    const gameBoardContainer = document.querySelector(`#gameBoardContainer`);
+    gameBoardContainer.innerText = '';
+
     const gameBoard = new GameBoard(gameBoardConfig);
     gameBoard.build();
     console.dir(gameBoard);
