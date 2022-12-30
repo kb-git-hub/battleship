@@ -1,7 +1,7 @@
 import { Theme } from '../game-components/config/theme.class.js';
 import gameLoopEventListeners from './gameloop-eventlisteners.js';
 import { gameBoardConfig } from '../game-components/config/gameBoard.config.js';
-import GameBoard from '../game-components/gameboard.class.js';
+import { GameBoard } from '../game-components/gameBoard.class.js';
 
 class GameLoop {
     constructor(gameBoard) {

@@ -7,7 +7,7 @@ import { Opponent } from './players/opponent.class.js';
 import { Player } from './players/player.class.js';
 import { Ship } from './ship.class.js';
 
-export default class GameBoard {
+class GameBoard {
     constructor() {
         generateQueryConstructor.call(this, ...arguments);
     }
@@ -140,3 +140,5 @@ export default class GameBoard {
         opponent.buildAttackBattery();
     }
 }
+
+export { GameBoard };
