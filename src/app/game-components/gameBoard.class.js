@@ -1,11 +1,11 @@
 import { Theme } from './config/theme.class.js';
 import { generateQueryConstructor } from '../utils/utils.js';
-import { PlayerSquare } from './boardSquares/playerSquare.class.js';
 import { OpponentSquare } from './boardSquares/OpponentSquare.class.js';
 import { shipConfig } from './config/ship.config.js';
 import { Opponent } from './players/opponent.class.js';
 import { Player } from './players/player.class.js';
 import { Ship } from './ship.class.js';
+import { PlayerSquare } from './boardSquares/PlayerSquare.class.js';
 
 class GameBoard {
     constructor() {
