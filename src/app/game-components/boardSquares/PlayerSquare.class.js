@@ -1,7 +1,7 @@
+import { BoardSquare } from './BoardSquare.class.js';
 import { generateQueryConstructor } from '../../utils/utils.js';
 import { Theme } from '../config/theme.class.js';
-import { BoardSquare } from './BoardSquare.class.js';
-import renderPlayerSquareEvents from './playerSquare-event-methods.js';
+import renderPlayerSquareEvents from './PlayerSquare-event-methods.js';
 
 class PlayerSquare extends BoardSquare {
     constructor() {
