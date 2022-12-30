@@ -15,7 +15,8 @@ class Opponent extends Player {
         while (this.shipCount > 0) {
             const ships = this.#generateShipSquareArray();
             ships.forEach((ship) => {
-                ship.boardSquareElement.classList.add(boardSquareBG.enemy);
+                // show enemy squares
+                // ship.boardSquareElement.classList.add(boardSquareBG.enemy);
                 ship.validForPlacement = false;
             });
 

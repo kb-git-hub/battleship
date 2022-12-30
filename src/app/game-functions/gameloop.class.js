@@ -58,12 +58,16 @@ class GameLoop {
             const rotateText = document.createElement('div');
             const shipsRemaining = document.createElement('div');
 
-            directions.innerText = 'Place ships on the left board';
-            rotateText.innerText = `Press 'R' to rotate ship`;
-            shipsRemaining.innerText = `Ships remaining: ${this.playerShipsRemaining}`;
+            directions.innerHTML = `Place ships on the <span class='text-lime-500'>left</span> board`;
+            rotateText.innerHTML = `Press <span class='text-sky-500'>'R'</span> to rotate ship`;
+            shipsRemaining.innerHTML = `Ships remaining: <span class='text-rose-500'> ${this.playerShipsRemaining} </span>`;
             this.informationDiv.append(directions, rotateText, shipsRemaining);
         } else {
-            this.informationDiv.innerText = `Click opponent's board to attack!`;
+            const d1 = document.createElement('div');
+            const d2 = document.createElement('div');
+            d1.innerHTML = `Click opponent's board on the`;
+            d2.innerHTML = ` <span class='text-violet-500'>left</span> to attack!`;
+            this.informationDiv.append(d1, d2);
         }
     }
 
@@ -89,6 +93,7 @@ class GameLoop {
         const winnerText = document.createElement('div');
         const playAgain = document.createElement('div');
 
+        playAgain.classList.add('bg-blue-800');
         playAgain.innerText = `Play again?`;
 
         const keys = Object.keys(playAgainButton);

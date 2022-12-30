@@ -35,7 +35,7 @@ const Theme = {
 
     infoDiv: {
         height: `h-[200px]`,
-        width: `w-[300px]`,
+        width: `w-[450px]`,
         minHeight: `min-h-[200px]`,
         minWidth: `min-w-[300px]`,
         borderColor: `border-zinc-600`,
@@ -46,7 +46,9 @@ const Theme = {
         flexCol: `flex-col`,
         justify: `justify-center`,
         align: `items-center`,
-        gap: `gap-2`,
+        gap: `gap-6`,
+        font: `font-blockfont`,
+        fontsize: `text-sm`,
     },
 
     playAgainButton: {
