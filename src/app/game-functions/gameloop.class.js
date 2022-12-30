@@ -66,7 +66,7 @@ class GameLoop {
             const d1 = document.createElement('div');
             const d2 = document.createElement('div');
             d1.innerHTML = `Click opponent's board on the`;
-            d2.innerHTML = ` <span class='text-violet-500'>left</span> to attack!`;
+            d2.innerHTML = ` <span class='text-violet-500'>right</span> to attack!`;
             this.informationDiv.append(d1, d2);
         }
     }
