@@ -661,6 +661,10 @@ video {
   cursor: cell;
 }
 
+.cursor-default {
+  cursor: default;
+}
+
 .flex-col {
   flex-direction: column;
 }

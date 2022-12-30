@@ -9,10 +9,11 @@
         <link rel="shortcut icon" href="https://img.icons8.com/fluency/48/null/wharf.png" />
         <link rel="stylesheet" href="../dist/output.css" />
         <script src="script.js" type="module" defer></script>
+        <script src="https://kit.fontawesome.com/4c536a6bd5.js" crossorigin="anonymous"></script>
     </head>
     <body class="relative overflow-hidden">
         <header
-            class="bg-zinc-600 h-[100px] justify-center items-center text-white text-[40px] tracking-widest flex"
+            class="bg-zinc-600 h-[100px] justify-center items-center text-white text-[40px] tracking-widest flex cursor-pointer"
         >
             <div id="logo">BATTLESHIP</div>
         </header>
@@ -24,9 +25,20 @@
             ></div>
         </main>
         <footer
-            class="mt-8 w-full fixed bottom-0 text-center h-[100px] flex justify-center items-center bg-zinc-600"
+            class="mt-8 w-full fixed bottom-0 text-center h-[100px] flex justify-center items-center bg-zinc-600 text-white"
         >
-            <div class="">footer</div>
+            <div class="cursor-default flex gap-2">
+                <p>
+                    copyright ©
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                    kjbr
+                </p>
+                <a href="https://github.com/kb-git-hub" target="_blank">
+                    <i class="fab fa-github-alt"></i>
+                </a>
+            </div>
         </footer>
     </body>
 </html>
