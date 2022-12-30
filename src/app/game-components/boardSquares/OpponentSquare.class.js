@@ -1,6 +1,6 @@
+import { BoardSquare } from './BoardSquare.class.js';
 import { generateQueryConstructor } from '../../utils/utils.js';
 import { Theme } from '../config/theme.class.js';
-import { BoardSquare } from './BoardSquare.class.js';
 
 class OpponentSquare extends BoardSquare {
     constructor() {
