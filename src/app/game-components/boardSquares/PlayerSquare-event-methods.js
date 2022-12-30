@@ -37,7 +37,6 @@ function squareHoverEvents() {
     });
 }
 
-// adjacent sqaures validForPlacement = false , shipsquares, validForPlacement = false, and occupied ship, shipY
 function squarePlacementClickEvents() {
     const { gameBoard, boardSquareElement } = this;
     const { boardSquareBG } = Theme;
