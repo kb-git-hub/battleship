@@ -126,7 +126,6 @@ function newGame() {
 
     const gameBoard = new GameBoard(gameBoardConfig);
     gameBoard.build();
-    console.dir(gameBoard);
 
     const gameLoop = new GameLoop(gameBoard);
     gameLoop.gameInit();
