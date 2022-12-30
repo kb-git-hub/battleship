@@ -1,5 +1,5 @@
-import { Theme } from '../config/theme.class.js';
 import { generateQueryConstructor } from '../../utils/utils.js';
+import { Theme } from '../config/theme.class.js';
 
 class BoardSquare {
     constructor() {

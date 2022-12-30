@@ -1,4 +1,4 @@
-import { BoardSquare } from './BoardSquare.class.js';
+import { BoardSquare } from './boardSquare.class.js';
 import { generateQueryConstructor } from '../../utils/utils.js';
 import { Theme } from '../config/theme.class.js';
 import renderPlayerSquareEvents from './PlayerSquare-event-methods.js';
