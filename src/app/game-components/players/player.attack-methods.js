@@ -21,8 +21,4 @@ function attack(square) {
     }
 }
 
-function receiveAttack() {
-    console.log('attacked Received');
-}
-
-export { attack, receiveAttack };
+export { attack };

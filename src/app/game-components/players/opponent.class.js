@@ -115,7 +115,38 @@ class Opponent extends Player {
         return true;
     }
 
-    attack() {}
+    buildAttackBattery() {
+        const { gameBoard } = this;
+
+        const {
+            boardCollection: { playerBoard },
+        } = gameBoard;
+
+        this.attackBattery = Object.values(playerBoard).sort(() => Math.random() - 0.5);
+        const test = this.attackBattery.pop();
+    }
+
+    attack() {
+        const square = this.attackBattery.pop();
+        const { boardSquareElement } = square;
+        const { boardSquareBG } = Theme;
+
+        if (square.attackedStatus !== 'open') return;
+        this.totalAttacks++;
+
+        if (square.occupiedByShip) {
+            this.totalHits++;
+            square.resetBGColor();
+            boardSquareElement.classList.add(boardSquareBG.attackHit);
+            square.attackedStatus = 'hit';
+        }
+
+        if (!square.occupiedByShip) {
+            square.resetBGColor();
+            boardSquareElement.classList.add(boardSquareBG.attackMiss);
+            square.attackedStatus = 'miss';
+        }
+    }
 }
 
 export { Opponent };

@@ -24,6 +24,7 @@ export default class GameBoard {
         this.populateBoardWithSquares(this.playerBoardElements.opponentBoardElement);
 
         this.#placeOpponentShips();
+        this.#generateOpponentAttackBattery();
     }
 
     /// Generate players ///
@@ -130,5 +131,12 @@ export default class GameBoard {
             players: { opponent },
         } = this;
         opponent.generateRandomBoard();
+    }
+
+    #generateOpponentAttackBattery() {
+        const {
+            players: { opponent },
+        } = this;
+        opponent.buildAttackBattery();
     }
 }

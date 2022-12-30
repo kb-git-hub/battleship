@@ -1,4 +1,4 @@
-import { attack, receiveAttack } from '../game-components/players/player.attack-methods.js';
+import { attack } from '../game-components/players/player.attack-methods.js';
 
 export default function gameLoopEventListeners() {
     playerSquareListeners.call(this);
@@ -24,7 +24,7 @@ function playerSquareListeners() {
 function OpponentSquareListeners() {
     const { gameBoard } = this;
     const {
-        players: { player },
+        players: { player, opponent },
         boardCollection: { opponentBoard },
     } = gameBoard;
 
@@ -33,7 +33,7 @@ function OpponentSquareListeners() {
         opponentBoard[key].boardSquareElement.addEventListener('click', () => {
             if (this.readyToFight) {
                 attack.call(player, opponentBoard[key]);
-                receiveAttack.call(player);
+                opponent.attack();
                 this.checkForWinner();
             }
         });
