@@ -1,41 +1,41 @@
-import { attack } from '../game-components/players/player.attack-methods.js';
+import { attack } from "../game-components/players/player.attack-methods.js"
 
 export default function gameLoopEventListeners() {
-    playerSquareListeners.call(this);
-    OpponentSquareListeners.call(this);
+  playerSquareListeners.call(this)
+  OpponentSquareListeners.call(this)
 }
 
 function playerSquareListeners() {
-    const { gameBoard } = this;
-    const {
-        boardCollection: { playerBoard },
-    } = gameBoard;
+  const { gameBoard } = this
+  const {
+    boardCollection: { playerBoard },
+  } = gameBoard
 
-    const keys = Object.keys(playerBoard);
-    keys.forEach((key) => {
-        playerBoard[key].boardSquareElement.addEventListener('click', () => {
-            this.playerShipsRemaining = gameBoard.players.player.shipCount;
-            this.updateGameInfoDivText();
-            this.checkReadyToFight();
-        });
-    });
+  const keys = Object.keys(playerBoard)
+  keys.forEach((key) => {
+    playerBoard[key].boardSquareElement.addEventListener("click", () => {
+      this.playerShipsRemaining = gameBoard.players.player.shipCount
+      this.updateGameInfoDivText()
+      this.checkReadyToFight()
+    })
+  })
 }
 
 function OpponentSquareListeners() {
-    const { gameBoard } = this;
-    const {
-        players: { player, opponent },
-        boardCollection: { opponentBoard },
-    } = gameBoard;
+  const { gameBoard } = this
+  const {
+    players: { player, opponent },
+    boardCollection: { opponentBoard },
+  } = gameBoard
 
-    const keys = Object.keys(opponentBoard);
-    keys.forEach((key) => {
-        opponentBoard[key].boardSquareElement.addEventListener('click', () => {
-            if (this.readyToFight) {
-                attack.call(player, opponentBoard[key]);
-                opponent.attack();
-                this.checkForWinner();
-            }
-        });
-    });
+  const keys = Object.keys(opponentBoard)
+  keys.forEach((key) => {
+    opponentBoard[key].boardSquareElement.addEventListener("click", () => {
+      if (this.readyToFight) {
+        attack.call(player, opponentBoard[key])
+        opponent.attack()
+        this.checkForWinner()
+      }
+    })
+  })
 }

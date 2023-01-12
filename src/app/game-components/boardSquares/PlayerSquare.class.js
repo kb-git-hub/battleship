@@ -1,52 +1,53 @@
-import { BoardSquare } from './boardSquare.class.js';
-import { generateQueryConstructor } from '../../utils/utils.js';
-import { Theme } from '../config/theme.class.js';
-import renderPlayerSquareEvents from './PlayerSquare-event-methods.js';
+import { BoardSquare } from "./boardSquare.class.js"
+import { generateQueryConstructor } from "../../utils/utils.js"
+import { Theme } from "../config/theme.class.js"
+import renderPlayerSquareEvents from "./PlayerSquare-event-methods.js"
 
 class PlayerSquare extends BoardSquare {
-    constructor() {
-        super({}); // HAVE TO PASS IN AN EMPTY OBJECT HERE. CRAZY
-        generateQueryConstructor.call(this, ...arguments);
-    }
+  constructor() {
+    super({}) // HAVE TO PASS IN AN EMPTY OBJECT HERE. CRAZY
+    generateQueryConstructor.call(this, ...arguments)
+  }
 
-    render() {
-        super.render();
-        this.renderCursor();
-        renderPlayerSquareEvents.call(this);
-    }
+  render() {
+    super.render()
+    this.renderCursor()
+    renderPlayerSquareEvents.call(this)
+  }
 
-    renderCursor() {
-        const { boardSquareElement } = this;
-        const { boardSquareCursor } = Theme;
-        boardSquareElement.classList.add(boardSquareCursor.player);
-    }
+  renderCursor() {
+    const { boardSquareElement } = this
+    const { boardSquareCursor } = Theme
+    boardSquareElement.classList.add(boardSquareCursor.player)
+  }
 
-    resetBGColor() {
-        const { boardSquareElement } = this;
-        const bgRegex = /^bg/;
+  resetBGColor() {
+    const { boardSquareElement } = this
+    const bgRegex = /^bg/
 
-        boardSquareElement.classList.forEach((className) => {
-            if (bgRegex.test(className)) boardSquareElement.classList.remove(className);
-        });
-    }
+    boardSquareElement.classList.forEach((className) => {
+      if (bgRegex.test(className)) boardSquareElement.classList.remove(className)
+    })
+  }
 
-    resetAllBGColors() {
-        const {
-            gameBoard: {
-                boardCollection: { playerBoard },
-            },
-        } = this;
+  resetAllBGColors() {
+    const {
+      gameBoard: {
+        boardCollection: { playerBoard },
+        players: { player },
+      },
+    } = this
 
-        const bgRegex = /^bg/;
-        const boardSquares = Object.values(playerBoard);
-        boardSquares.forEach((square) => {
-            square.boardSquareElement.classList.forEach((className) => {
-                if (square.validForPlacement) {
-                    if (bgRegex.test(className)) square.boardSquareElement.classList.remove(className);
-                }
-            });
-        });
-    }
+    const bgRegex = /^bg/
+    const boardSquares = Object.values(playerBoard)
+    boardSquares.forEach((square) => {
+      square.boardSquareElement.classList.forEach((className) => {
+        if (square.validForPlacement) {
+          if (bgRegex.test(className)) square.boardSquareElement.classList.remove(className)
+        }
+      })
+    })
+  }
 }
 
-export { PlayerSquare };
+export { PlayerSquare }
